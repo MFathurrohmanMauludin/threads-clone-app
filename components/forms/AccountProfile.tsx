@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserValidation } from "@/lib/validations/user";
+import * as z from "zod";
 
 interface Props {
     user: {
@@ -39,9 +40,33 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         }
     });
 
-    return (
-        <Form>
+    function onSubmit(values: z.infer<typeof UserValidation>) {
+        // Do something with the form values.
+        // ✅ This will be type-safe and validated.
+        console.log(values)
+    }
 
+    return (
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <FormField
+                    control={form.control}
+                    name="username"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Username</FormLabel>
+                            <FormControl>
+                                <Input placeholder="shadcn" {...field} />
+                            </FormControl>
+                            <FormDescription>
+                                This is your public display name.
+                            </FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <Button type="submit">Submit</Button>
+            </form>
         </Form>
     )
 }
