@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 let isConnected = false; // variable to check if mongoose is connected
 
 // create connection DB function
-export const connectedToDB = async () => {
+export const connectToDB = async () => {
     mongoose.set('strictQuery', true); // this is to prevent unknown field queries
 
     // Apakah url mongodb secara spesifik terhubung
