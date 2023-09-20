@@ -99,6 +99,12 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
             image: values.profile_photo,
             path: pathname,
         });
+
+        if (pathname === '/profile/edit') {
+            router.back(); // kembali ke halaman sebelumnya setelah diedit
+        } else {
+            router.push('/');
+        }
     }
 
     return (
