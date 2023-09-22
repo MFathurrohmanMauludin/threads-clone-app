@@ -21,9 +21,9 @@ export async function updateUser({
     image,
     path,
 }: Params): Promise<void> {
-    connectToDB();
-
     try {
+        connectToDB();
+
         await User.findOneAndUpdate(
             { id: userId },
             {
@@ -36,22 +36,19 @@ export async function updateUser({
             { upsert: true } // realtime update dan insert data di database
         );
 
-        if (path === '/profile/edit') {
+        if (path === "/profile/edit") {
             revalidatePath(path);
         }
     } catch (error: any) {
         throw new Error(`Failed to create/update user: ${error.message}`);
     }
-
-
 }
 
 export async function fetchUser(userId: string) {
     try {
         connectToDB();
 
-        return await User
-            .findOne({ id: userId })
+        return await User.findOne({ id: userId });
         // .populate({
         //     path: 'communities',
         //     model: Community
