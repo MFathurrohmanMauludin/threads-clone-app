@@ -1,7 +1,7 @@
 import PostThread from "@/components/forms/PostThread";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { redirect } from "next/navigation"; // mengarahkan ke halaman url yang dituju
 
 async function Page() {
     const user = await currentUser();
