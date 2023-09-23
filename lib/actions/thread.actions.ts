@@ -25,6 +25,9 @@ export async function createThread({ text, author, communityId, path }: Params) 
         $push: { threads: createThread._id }
     })
 
-    // allows you to purge cached data on-demand for a specific path
+    /*
+    allows you to purge cached data on-demand for a specific path or 
+    make sure that the changes happen immediately on our nextjs website
+    */
     revalidatePath(path);
 }
