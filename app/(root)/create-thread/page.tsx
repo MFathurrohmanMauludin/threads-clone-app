@@ -11,6 +11,7 @@ async function Page() {
 
     const userInfo = await fetchUser(user.id);
 
+    // data diambil dari mongodb 
     if (!userInfo?.onboarded) redirect('/onboarding');
 
     return (
