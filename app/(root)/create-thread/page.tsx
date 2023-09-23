@@ -16,8 +16,6 @@ async function Page() {
     return (
         <>
             <h1 className="head-text">Create Thread</h1>
-            <h2 className="head-text">{userInfo?.onboarded}</h2>
-            <h3 className="text-light-1">{!userInfo?.onboarded ? "false" : "true"}</h3>
             <PostThread userId={userInfo._id} />
         </>
     )
