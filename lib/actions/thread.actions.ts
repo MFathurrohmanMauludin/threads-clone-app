@@ -11,23 +11,29 @@ interface Params {
 }
 
 export async function createThread({ text, author, communityId, path }: Params) {
-    connectToDB();
+    try {
+        connectToDB();
 
-    // Thread ini adalah mongoose mongodb model
-    const createThread = await Thread.create({
-        text,
-        author,
-        community: null,
-    });
+        // Thread ini adalah mongoose mongodb model
+        const createThread = await Thread.create({
+            text,
+            author,
+            community: null,
+        });
 
-    // Update user model
-    await User.findByIdAndUpdate(author, {
-        $push: { threads: createThread._id }
-    })
+        // Update user model
+        await User.findByIdAndUpdate(author, {
+            $push: { threads: createThread._id }
+        })
 
-    /*
-    allows you to purge cached data on-demand for a specific path or 
-    make sure that the changes happen immediately on our nextjs website
-    */
-    revalidatePath(path);
+        /*
+        allows you to purge cached data on-demand for a specific path or 
+        make sure that the changes happen immediately on our nextjs website
+        */
+        revalidatePath(path);
+    } catch (error: any) {
+        throw new Error(`Error creating thread: ${error.message}`);
+    }
+
+
 }
