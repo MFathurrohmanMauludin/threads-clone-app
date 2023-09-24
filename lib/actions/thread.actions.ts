@@ -1,3 +1,5 @@
+"use server" // directly create database actions through the browser side
+
 import { revalidatePath } from "next/cache";
 import Thread from "../models/thread.model";
 import { connectToDB } from "../mongoose";
@@ -34,6 +36,4 @@ export async function createThread({ text, author, communityId, path }: Params) 
     } catch (error: any) {
         throw new Error(`Error creating thread: ${error.message}`);
     }
-
-
 }
