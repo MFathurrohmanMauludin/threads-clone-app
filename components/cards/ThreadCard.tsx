@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
     id: string;
@@ -9,20 +10,18 @@ interface Props {
         name: string;
         image: string;
         id: string;
-
-    }
+    };
     community: {
         id: string;
         name: string;
         image: string;
     } | null;
-    createdAt: string
+    createdAt: string;
     comments: {
         author: {
             image: string;
-
-        }
-    }[]
+        };
+    }[];
     isComment?: boolean;
 }
 
@@ -34,14 +33,14 @@ const ThreadCard = ({
     author,
     community,
     createdAt,
-    comments
+    comments,
 }: Props) => {
     return (
         <article className="flex w-full flex-col rounded-xl bg-dark-2 p-7">
             <div className="flex itmes-start justify-between">
                 <div className="flex w-full flex-1 flex-row gap-4">
                     <div className="flex flex-col items-center">
-                        <link
+                        <Link
                             href={`/profile/${author.id}`}
                             className="relative h-11 w-11"
                         >
@@ -51,18 +50,18 @@ const ThreadCard = ({
                                 fill
                                 className="cursor-pointer rounded-full"
                             />
-                        </link>
+                        </Link>
 
                         <div className="thread-card_bar" />
                     </div>
 
                     <div className="">
-                        <link
+                        <Link
                             href={`/profile/${author.id}`}
                             className="w-fit"
                         >
                             <h4 className="cursor-pointer text-base-semibold text-light-1">{author.name}</h4>
-                        </link>
+                        </Link>
                     </div>
                 </div>
             </div>
