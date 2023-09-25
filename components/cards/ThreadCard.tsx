@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface Props {
     id: string;
     currentUserId: string;
@@ -35,10 +37,30 @@ const ThreadCard = ({
     comments
 }: Props) => {
     return (
-        <article>
-            <h1 className="text-small-regular text-light-2">
+        <article className="flex w-full flex-col rounded-xl bg-dark-2 p-7">
+            <div className="flex itmes-start justify-between">
+                <div className="flex w-full flex-1 flex-row gap-4">
+                    <div className="flex flex-col items-center">
+                        <link
+                            href={`/profile/${author.id}`}
+                            className="relative h-11 w-11"
+                        >
+                            <Image
+                                src={author.image}
+                                alt="Profile image"
+                                fill
+                                className="cursor-pointer rounded-full"
+                            />
+                        </link>
+
+                        <div className="thread-card_bar" />
+                    </div>
+                </div>
+            </div>
+
+            <h2 className="text-small-regular text-light-2">
                 {content}
-            </h1>
+            </h2>
         </article>
     )
 }
