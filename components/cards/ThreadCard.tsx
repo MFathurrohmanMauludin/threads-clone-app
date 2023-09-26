@@ -34,6 +34,7 @@ const ThreadCard = ({
     community,
     createdAt,
     comments,
+    isComment,
 }: Props) => {
     return (
         <article className="flex w-full flex-col rounded-xl bg-dark-2 p-7">
@@ -72,7 +73,20 @@ const ThreadCard = ({
                                 <Image
                                     src="/assets/heart-gray.svg" alt="heart" width={24} height={24} className="cursor-pointer object-contain"
                                 />
+                                <Link href={`/thread/${id}`}>
+                                    <Image
+                                        src="/assets/reply.svg" alt="reply" width={24} height={24} className="cursor-pointer object-contain"
+                                    />
+                                </Link>
+                                <Image
+                                    src="/assets/repost.svg" alt="repost" width={24} height={24} className="cursor-pointer object-contain"
+                                />
+                                <Image
+                                    src="/assets/share.svg" alt="share" width={24} height={24} className="cursor-pointer object-contain"
+                                />
                             </div>
+
+
                         </div>
                     </div>
                 </div>
