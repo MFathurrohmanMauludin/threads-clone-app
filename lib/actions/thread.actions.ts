@@ -140,6 +140,9 @@ export async function addCommentToThread(
 
         // Save the original thread
         await originalThread.save();
+
+        // Menampilkan data secara instan (tidak harus di refresh)
+        revalidatePath(path);
     } catch (error: any) {
         throw new Error(`Error adding comment to thread: ${error.message}`);
     }
