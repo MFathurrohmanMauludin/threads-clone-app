@@ -32,6 +32,7 @@ const ProfileHeader = ({
 
                     <div className="flex-1">
                         <h2 className="text-left text-heading3-bold text-light-1">{name}</h2>
+                        <p className="text-base-regular">@{username}</p>
                     </div>
                 </div>
             </div>
