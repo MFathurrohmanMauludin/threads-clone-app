@@ -5,6 +5,8 @@ interface Props {
 }
 
 const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
+    // TODO: Fecth profile threads
+
     return (
         <section>
             ThreadsTab
