@@ -83,7 +83,6 @@ export async function fecthUserProfile(userId: string) {
 
         return threads;
     } catch (error: any) {
-        throw new Error();
-
+        throw new Error(`Failed to fettch user posts: ${error.message}`);
     }
 }
