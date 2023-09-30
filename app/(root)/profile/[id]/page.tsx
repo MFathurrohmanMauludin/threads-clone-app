@@ -3,6 +3,8 @@ import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation"; // mengarahkan ke halaman url yang dituju
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 
 async function Page({ params }: { params: { id: string } }) {
     const user = await currentUser();
@@ -26,7 +28,11 @@ async function Page({ params }: { params: { id: string } }) {
             />
 
             <div className="mt-9">
+                <Tabs>
+                    <TabsList>
 
+                    </TabsList>
+                </Tabs>
             </div>
         </section>
     )
