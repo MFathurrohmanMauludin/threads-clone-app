@@ -107,7 +107,10 @@ export async function fetchUsers({
 
         const skipAmount = (pageNumber - 1) * pageSize;
 
+        // mengubah inputan user menjadi case insensitive regular (tidak peka huruf besar maupun kecil)
         const regex = new RegExp(searchString, "i");
+
+
     } catch (error) {
 
     }
