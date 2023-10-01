@@ -23,7 +23,10 @@ const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
                     currentUserId={currentUserId}
                     parentId={thread.parentId}
                     content={thread.text}
-                    author={thread.author} // TODO: update authornya
+                    author={accountType === 'User'
+                        ? { name: result.name, image: result.image, id: result.id } :
+                        { name: thread.author.name, image: thread.author.image, id: thread.author.id }
+                    } // TODO: update authornya
                     community={thread.community} // TODO: update komunitasnya
                     createdAt={thread.createdAt}
                     comments={thread.children}
