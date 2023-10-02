@@ -1,5 +1,5 @@
 import ProfileHeader from "@/components/shared/ProfileHeader";
-import { fetchUser } from "@/lib/actions/user.actions";
+import { fetchUser, fetchUsers } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation"; // mengarahkan ke halaman url yang dituju
 
@@ -20,9 +20,12 @@ async function Page() {
     if (!userInfo?.onboarded) redirect('/onboarding');
 
     // fetch all users
-
-
-
+    const result = await fetchUsers({
+        userId: user.id,
+        searchString: '',
+        pageNumber: 1,
+        pageSize: 25
+    })
 
     return (
         <section>
