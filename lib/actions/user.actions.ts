@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
 import { connectToDB } from "../mongoose"
 import Thread from "../models/thread.model";
-import { SortOrder } from "mongoose";
+import { FilterQuery, SortOrder } from "mongoose";
 
 interface Params {
     userId: string;
@@ -88,6 +88,7 @@ export async function fecthUserProfile(userId: string) {
     }
 }
 
+// untuk pencarian user
 export async function fetchUsers({
     userId,
     searchString = "",
@@ -110,8 +111,32 @@ export async function fetchUsers({
         // mengubah inputan user menjadi case insensitive regular (tidak peka huruf besar maupun kecil)
         const regex = new RegExp(searchString, "i");
 
+        // Membuat query
+        const query: FilterQuery<typeof User> = {
+            id: { $ne: userId } // $ne as in not equal to userId
+        }
 
-    } catch (error) {
+        if (searchString.trim() !== '') {
+            query.$or = [
+                { username: { $regex: regex } },
+                { name: { $regex: regex } }
+            ]
+        }
 
+        const sortOptions = { createdAt: sortBy };
+
+        const usersQuery = User.find(query)
+            .sort(sortOptions)
+            .skip(skipAmount)
+            .limit(pageSize);
+
+        const totalUserCount = await User.countDocuments(query);
+
+        const users = await usersQuery.exec();
+
+        const isNext = totalUserCount > skipAmount + users.length;
+        return { users, isNext }
+    } catch (error: any) {
+        throw new Error(`Failed to fetch users: ${error.message}`);
     }
 }
