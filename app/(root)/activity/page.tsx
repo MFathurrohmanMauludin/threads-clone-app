@@ -15,6 +15,7 @@ async function Page() {
 
     // data diambil dari mongodb 
     if (!userInfo?.onboarded) redirect('/onboarding');
+    console.log(userInfo?.onboarded);
 
     // getActivity
     const activity = await getActivity(userInfo._id);
