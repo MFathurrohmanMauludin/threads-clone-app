@@ -155,7 +155,7 @@ export async function getActivity(userId: string) {
 
         const replies = await Thread.find({
             _id: { $in: childThreadIds },
-            author: { $ne: userId }
+            author: { $ne: userId } // $in dan $ne adalah operator dari mongoose
         }).populate({
             path: 'author',
             model: User,
