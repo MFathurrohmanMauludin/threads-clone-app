@@ -34,8 +34,14 @@ async function Page() {
                                         alt="Profile Picture"
                                         width={20}
                                         height={20}
-                                        className="rounded-full object-cover"
+                                        className="object-cover object-top max-w-[20px] max-h-[20px] rounded-full"
                                     />
+                                    <p className="!text-small-regular text-light-1 pt-[2px]">
+                                        <span className="mr-1 text-primary-500">
+                                            {activity.author.name}
+                                        </span>{" "}
+                                        replied to your thread
+                                    </p>
                                 </article>
 
                             </Link>
