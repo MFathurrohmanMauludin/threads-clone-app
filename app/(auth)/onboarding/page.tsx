@@ -4,16 +4,14 @@ import { currentUser } from "@clerk/nextjs";
 async function Page() {
     const user = await currentUser(); // mendapat account user yang sedang aktif
 
-    const userInfo = {
-
-    };
+    const userInfo = {};
 
     const userData = {
         id: user?.id,
         objectId: userInfo?._id,
         username: userInfo?.username || user?.username,
         name: userInfo?.name || user?.firstName || "",
-        bio: userInfo?.avatar || "",
+        bio: userInfo?.bio || "",
         image: userInfo?.image || user?.imageUrl,
     }
 
