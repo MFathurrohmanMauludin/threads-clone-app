@@ -151,7 +151,10 @@ export async function getActivity(userId: string) {
         // Collect all the child thread Ids (replies) from the 'chidren' field
         const childThreadIds = userThreads.reduce((acc, userThread) => {
             return acc.concat(userThread.children);
-        });
+        }, []);
+        /*
+            [] not a dependency array like usual but rather this is the default accumulator that we have to add to the reduce function
+        */
 
         const replies = await Thread.find({
             _id: { $in: childThreadIds },
