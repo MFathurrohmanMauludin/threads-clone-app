@@ -165,6 +165,5 @@ export async function getActivity(userId: string) {
         return replies;
     } catch (error: any) {
         throw new Error(`Failed to fetch activity: ${error.message}`);
-
     }
 }
